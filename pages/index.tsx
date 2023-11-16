@@ -1,118 +1,146 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import Image from "next/image";
+import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ['latin'] })
+import image from "../images/HotelFrontView.png";
+import zimmer from "../images/Zimmer.jpg";
+import styled from "styled-components";
+import { Arrangements } from "@/components/HomePage/Arrangements";
+import { ServiceSection } from "@/components/HomePage/ServiceSection";
+import { ImpressionSection } from "@/components/HomePage/ImpressionSection";
+import { MatterportSection } from "@/components/HomePage/MatterportSection";
+import { NewsSection } from "@/components/HomePage/NewsSection";
+import { useCustomQuery } from "@/useRequest";
+import {
+  GetHomePageDocument,
+  GetHomePageQuery,
+  GetHomePageQueryVariables,
+} from "@/src/homePageQuery.generated";
+import {
+  GetHomePageByIdDocument,
+  GetHomePageByIdQuery,
+  GetHomePageByIdQueryVariables,
+} from "@/src/getHomePageById.generated";
+
+const inter = Inter({ subsets: ["latin"] });
+
+const TranslatedElement = styled.div`
+  transform: translateY(-50%);
+`;
 
 export default function Home() {
-  return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+  const { data: homePageData } = useCustomQuery<
+    GetHomePageQuery,
+    GetHomePageQueryVariables
+  >({
+    graphQlDocument: GetHomePageDocument,
+    variables: {},
+    name: "getHomePageData",
+  });
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
+  const { data: homePageByIdQuery, error } = useCustomQuery<
+    GetHomePageByIdQuery,
+    GetHomePageByIdQueryVariables
+  >({
+    graphQlDocument: GetHomePageByIdDocument,
+    variables: { id: "cloyhlgge0wmx0bw1y6h9cm5x" },
+    name: "getHomePageDataById",
+  });
+
+  console.log("homePages", homePageData?.homePages);
+
+  console.log("homepageById", homePageByIdQuery?.homePage, error);
+
+  return (
+    <div className="mx-auto">
+      <div className="md:h-[540px] xl:h-[800px]">
         <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+          src={image}
+          alt="test"
+          sizes="(min-width: 1440px) 1440px, 100vw"
+          loading="eager"
+          quality={80}
+          className="object-cover object-center w-full h-full"
         />
       </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      <div className="max-w-screen-2xl mx-auto">
+        <div className="w-full px-4 lg:px-10 md:px-8 sm:px-6">
+          <TranslatedElement>
+            <div className="z-20 h-20 w-80 mx-auto bg-green-700 p-small elevation-2" />
+          </TranslatedElement>
+          <div className="h-40 flex flex-row gap-4 bg-gray-300">
+            <div className="ml-6">
+              <TranslatedElement>
+                <h1 className="text-4xl">Seehotel</h1>
+              </TranslatedElement>
+              <TranslatedElement>
+                <h1 className="text-4xl whitespace-nowrap ">Gut Dürnhof</h1>
+              </TranslatedElement>
+            </div>
+            <div className=" h-20 w-full mt-6 mr-10">
+              <div className=" h-20 bg-red-700"></div>
+            </div>
+          </div>
+          <Arrangements />
+          <div className="mx-auto w-40 h-20 bg-indigo-600"></div>
+          <ServiceSection />
+          <ImpressionSection />
+          <MatterportSection />
+          <NewsSection />
+        </div>
       </div>
-    </main>
-  )
+    </div>
+  );
 }
+
+// const Arrangement = () => {
+//   return (
+//     <div>
+//       <div className="relative" style={{ height: "372px", width: "235px" }}>
+//         <Image
+//           src={zimmer}
+//           fill
+//           className="absolute object-cover object-center"
+//           alt={""}
+//         />
+//         <div className=" text-black text-4xl ">
+//           <RotatedText>ZIMMER LAng</RotatedText>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+/* Zimmer */
+
+// const Image = styled.img`
+//   width: 200px; /* Adjust the width as needed */
+//   height: auto; /* Maintain the aspect ratio */
+// `;
+
+const RotatedText = styled.div`
+  position: absolute;
+  top: 80%;
+  left: 100%;
+  transform: translate(-50%, 0%) rotate(270deg);
+  transform-origin: 0 0;
+`;
+
+// /* Group 28 */
+
+// position: absolute;
+// width: 431px;
+// height: 462px;
+// left: 263px;
+// top: 1609px;
+
+// /* Rectangle 27 */
+
+// position: absolute;
+// width: 380px;
+// height: 266px;
+// left: 314px;
+// top: 1736px;
+
+// background: url(image.png);
+// border-radius: 4px;

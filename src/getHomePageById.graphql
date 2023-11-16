@@ -1,0 +1,13 @@
+query GetHomePageById($id: ID!) {
+  homePage(where: { id: $id }) {
+    serviceSection {
+      headline
+      subline
+      arrangements {
+        title
+        openingHours
+        serviceIcon
+      }
+    }
+  }
+}

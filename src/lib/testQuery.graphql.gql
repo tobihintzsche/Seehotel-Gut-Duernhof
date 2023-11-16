@@ -1,0 +1,14 @@
+export query GetHomePage {
+  homePages {
+    id
+    serviceSection {
+      headline
+      subline
+      arrangements {
+        title
+        openingHours
+        serviceIcon
+      }
+    }
+  }
+}
