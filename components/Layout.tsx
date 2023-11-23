@@ -14,7 +14,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex flex-col  justify-between h-screen">
       <div>
-        <div className="sticky top-0 z-50">
+        <div className="sticky top-0 z-30">
           <DynamicHeader />
         </div>
         <div className="mx-auto bg-white text-black">{children}</div>

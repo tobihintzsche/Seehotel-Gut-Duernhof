@@ -1,14 +1,5 @@
-// path-to-generated-file.ts
-
 import { useQuery, UseQueryOptions } from "react-query";
 import { GraphQLClient } from "graphql-request";
-import {
-  Exact,
-  GetHomePageDocument,
-  GetHomePageQuery,
-  GetHomePageQueryVariables,
-} from "./src/homePageQuery.generated";
-import { QueryKey, QueryOptions, queryOptions } from "@tanstack/react-query";
 
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 
@@ -17,21 +8,12 @@ const endpoint =
 
 const client = new GraphQLClient(endpoint);
 
-// Define the GraphQL
-
-type UseGetQueryProps<T, V> = {
-  graphQlDocument: DocumentNode<T, V>;
-  variables?: V & Omit<UseQueryOptions<T, Error, T>, "queryKey" | "queryFn">;
-  name: string;
-};
-
-export const useCustomQuery = <T, V>({
-  graphQlDocument,
-  variables,
-  name,
-}: UseGetQueryProps<T, V>) => {
-  return useQuery<T, Error>(name, async () => {
-    const response = await client.request<T>(graphQlDocument, variables);
-    return response;
-  });
+export const useCustomQuery = <T, V>(
+  name: string,
+  graphQlDocument: DocumentNode<T, V>,
+  variables?: V & Omit<UseQueryOptions<T, Error, T>, "queryKey" | "queryFn">
+) => {
+  return useQuery<T, Error>(name, () =>
+    client.request<T>(graphQlDocument, variables)
+  );
 };

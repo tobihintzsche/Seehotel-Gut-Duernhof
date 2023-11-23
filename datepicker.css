@@ -1,0 +1,170 @@
+.rs-picker-toggle {
+  /* Example styling for the toggle button */
+  background-color: #ffffff !important;
+  color: black !important ;
+}
+
+.rs-calendar-table-cell-in-range {
+  position: relative;
+  background-color: white;
+}
+
+.rs-calendar-table-cell-content {
+  font-size: 1rem !important;
+}
+
+.rs-calendar-table-cell-content {
+  height: 40px !important;
+  width: 40px !important;
+}
+
+.rs-btn-link {
+  color: black !important;
+}
+
+.rs-btn-primary {
+  background-color: rgb(228, 160, 0) !important;
+}
+
+.rs-calendar-table-cell-in-range:before {
+  height: 40px !important;
+  width: 40px !important;
+}
+
+.rs-calendar-table-cell-selected:before {
+  height: 40px !important;
+  margin-top: 0px !important;
+}
+
+.rs-calendar-table-cell-content {
+  line-height: 28px !important;
+  padding: 6px !important;
+}
+
+.rs-calendar-table-cell-in-range:before
+  .rs-calendar-table-cell-selected:before {
+  margin-top: 0px !important;
+}
+
+.rs-calendar-table-cell-content::before {
+  height: 40px !important;
+
+  width: 40px !important;
+}
+
+.rs-calendar-table-cell,
+.rs-calendar-table-header-cell {
+  padding: 0px 0px !important;
+}
+
+
+.rs-calendar-table-cell-in-range:before,
+.rs-calendar-table-cell-selected:before {
+  margin-top: 0px !important;
+}
+
+.rs-picker-daterange-calendar-group {
+  height: 100% !important;
+  min-width: auto !important;
+}
+
+/* Media query for tablet and mobile */
+@media only screen and (max-width: 767px) {
+  .rs-picker-daterange-calendar-group {
+    flex-direction: column;
+  }
+}
+
+/* Media query for desktop */
+@media only screen and (min-width: 768px) {
+  .rs-picker-daterange-calendar-group {
+    flex-direction: row;
+  }
+}
+
+.rs-picker-menu {
+  z-index: 40 !important;
+}
+
+.rs-calendar-table {
+  border-spacing: 0px 4px;
+}
+
+.rs-calendar-table-cell-selected-start::before {
+  background-color: white;
+  background: linear-gradient(to left, rgb(230, 224, 204) 50%, transparent 50%);
+  margin-top: 0px !important;
+}
+
+
+.rs-calendar-table-cell-selected-end::before {
+  background-color: white;
+  background: linear-gradient(
+    to right,
+    rgb(230, 224, 204) 50%,
+    transparent 50%
+  );
+  margin-top: 0px !important;
+}
+
+.rs-calendar-table-cell-selected .rs-calendar-table-cell-content {
+  background-color: rgb(228, 160, 0) !important;
+  
+}
+
+
+
+.rs-picker-menu .rs-calendar .rs-calendar-table-cell:hover .rs-calendar-table-cell-content {
+  color: black !important;
+  background-color: rgb(255, 255, 255) !important;
+  box-shadow: 0 0 0 1px black !important;
+}
+
+.rs-picker-daterange-menu .rs-calendar {
+  height: auto !important;
+}
+
+.rs-calendar-table-cell-content, .rs-calendar-table-cell  {
+  box-shadow: 0 0 0 1px transparent;
+}
+
+.rs-calendar-table-cell-content:hover {
+  color: black;
+  background-color: transparent !important;
+  box-shadow: 0 0 0 1px black;
+}
+
+.rs-calendar-table-cell-in-range:hover:before {
+  display: block;
+}
+
+
+
+/* .rs-calendar-table-cell:hover, .rs-calendar-table-header-cell:hover {
+  color: black;
+  background-color: transparent !important;
+  border-radius: 50%;
+  border: 1px black solid;
+} */
+
+
+.rs-calendar-table-cell-in-range:before {
+  background-color: rgb(230, 224, 204) !important;
+}
+
+
+.rs-calendar-table-cell-selected-end:not(:hover) ~ .rs-calendar-table-cell-selected-start::before {
+  background-color: white;
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to right, rgb(230, 224, 204) 50%, transparent 50%);
+  margin-top: 0px !important;
+  margin-left: auto;
+  left: 0;
+  right: 0;
+}
+
+
+

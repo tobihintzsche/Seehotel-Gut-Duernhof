@@ -2,8 +2,6 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 
 import image from "../images/HotelFrontView.png";
-import zimmer from "../images/Zimmer.jpg";
-import styled from "styled-components";
 import { Arrangements } from "@/components/HomePage/Arrangements";
 import { ServiceSection } from "@/components/HomePage/ServiceSection";
 import { ImpressionSection } from "@/components/HomePage/ImpressionSection";
@@ -20,35 +18,34 @@ import {
   GetHomePageByIdQuery,
   GetHomePageByIdQueryVariables,
 } from "@/src/getHomePageById.generated";
+import { DatePickerTest } from "@/components/HomePage/DatePickerTest";
+import styled from "styled-components";
+import request from "graphql-request";
+import type { InferGetStaticPropsType, GetStaticProps } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
 
 const TranslatedElement = styled.div`
   transform: translateY(-50%);
+
+  .tobi {
+    background: red;
+  }
 `;
 
-export default function Home() {
-  const { data: homePageData } = useCustomQuery<
-    GetHomePageQuery,
-    GetHomePageQueryVariables
-  >({
-    graphQlDocument: GetHomePageDocument,
-    variables: {},
-    name: "getHomePageData",
-  });
-
+export default function Home({
+  homePageData,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const { data: homePageByIdQuery, error } = useCustomQuery<
     GetHomePageByIdQuery,
     GetHomePageByIdQueryVariables
-  >({
-    graphQlDocument: GetHomePageByIdDocument,
-    variables: { id: "cloyhlgge0wmx0bw1y6h9cm5x" },
-    name: "getHomePageDataById",
+  >("getHomePageDataById", GetHomePageByIdDocument, {
+    id: "cloyhlgge0wmx0bw1y6h9cm5x",
   });
 
   console.log("homePages", homePageData?.homePages);
 
-  console.log("homepageById", homePageByIdQuery?.homePage, error);
+  // console.log("homepageById", homePageByIdQuery?.homePage, error);
 
   return (
     <div className="mx-auto">
@@ -66,12 +63,16 @@ export default function Home() {
       <div className="max-w-screen-2xl mx-auto">
         <div className="w-full px-4 lg:px-10 md:px-8 sm:px-6">
           <TranslatedElement>
-            <div className="z-20 h-20 w-80 mx-auto bg-green-700 p-small elevation-2" />
+            <div className="z-20 h-20 w-80 mx-auto bg-green-700 p-small elevation-2">
+              <div>
+                <DatePickerTest />
+              </div>
+            </div>
           </TranslatedElement>
           <div className="h-40 flex flex-row gap-4 bg-gray-300">
             <div className="ml-6">
               <TranslatedElement>
-                <h1 className="text-4xl">Seehotel</h1>
+                <h1 className="text-4xl tobi">Seehotel</h1>
               </TranslatedElement>
               <TranslatedElement>
                 <h1 className="text-4xl whitespace-nowrap ">Gut Dürnhof</h1>
@@ -93,38 +94,20 @@ export default function Home() {
   );
 }
 
-// const Arrangement = () => {
-//   return (
-//     <div>
-//       <div className="relative" style={{ height: "372px", width: "235px" }}>
-//         <Image
-//           src={zimmer}
-//           fill
-//           className="absolute object-cover object-center"
-//           alt={""}
-//         />
-//         <div className=" text-black text-4xl ">
-//           <RotatedText>ZIMMER LAng</RotatedText>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
+export const getStaticProps: GetStaticProps<{
+  homePageData: GetHomePageQuery;
+}> = async () => {
+  const res = await request<GetHomePageQuery>(
+    "https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/cloueut9v04gn01t789ft3289/master",
+    GetHomePageDocument
+  );
 
-/* Zimmer */
-
-// const Image = styled.img`
-//   width: 200px; /* Adjust the width as needed */
-//   height: auto; /* Maintain the aspect ratio */
-// `;
-
-const RotatedText = styled.div`
-  position: absolute;
-  top: 80%;
-  left: 100%;
-  transform: translate(-50%, 0%) rotate(270deg);
-  transform-origin: 0 0;
-`;
+  return {
+    props: {
+      homePageData: res,
+    },
+  };
+};
 
 // /* Group 28 */
 

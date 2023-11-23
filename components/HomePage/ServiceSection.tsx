@@ -5,6 +5,12 @@ import image from "../images/HotelFrontView.png";
 import zimmer from "../../images/Zimmer.jpg";
 import styled from "styled-components";
 import { ST } from "next/dist/shared/lib/utils";
+import {
+  GetHomePageQuery,
+  GetHomePageQueryVariables,
+  GetHomePageDocument,
+} from "@/src/homePageQuery.generated";
+import { useCustomQuery } from "@/useRequest";
 
 const StyledBlured = styled.div`
   width: 345px;
@@ -29,6 +35,11 @@ const StyledBlured2 = styled.div`
 `;
 
 export const ServiceSection = () => {
+  const { data: homePageData } = useCustomQuery<
+    GetHomePageQuery,
+    GetHomePageQueryVariables
+  >("getHomePageData", GetHomePageDocument);
+
   return (
     <div className="flex flex-col md:flex-row gap-10 pb-40">
       <div className="flex items-center">
@@ -44,26 +55,26 @@ export const ServiceSection = () => {
         </div>
       </div>
 
-      <div className="bg-gray-600 h-[600px] w-full flex items-center">
+      <div className="bg-gray-200 h-[600px] w-full flex items-center">
         <div className=" flex flex-col gap-4 ">
           <div>
-            <h1>Was wir dir bieten</h1>
-            <h1 className="text-4xl">Überzeugender Service</h1>
+            <h1>{homePageData?.homePages[0].serviceSection?.subline}</h1>
+            <h1 className="text-4xl">
+              {homePageData?.homePages[0].serviceSection?.headline}
+            </h1>
           </div>
           <div className="grid grid-cols-2 gap-2">
-            <div className="h-20 w-40 bg-violet-800"></div>
-            <div className="h-20 w-40 bg-violet-800"></div>
-
-            <div className="h-20 w-40 bg-violet-800"></div>
-
-            <div className="h-20 w-40 bg-violet-800"></div>
-
-            <div className="h-20 w-40 bg-violet-800"></div>
-            <div className="h-20 w-40 bg-violet-800"></div>
-
-            <div className="h-20 w-40 bg-violet-800"></div>
-
-            <div className="h-20 w-40 bg-violet-800"></div>
+            {homePageData?.homePages[0].serviceSection?.arrangements.map(
+              (arrangement) => {
+                return (
+                  <div key={arrangement.title}>
+                    <div>{arrangement.title}</div>
+                    <div>{arrangement.serviceIcon}</div>
+                    <p>{arrangement.openingHours}</p>
+                  </div>
+                );
+              }
+            )}
           </div>
           <div>
             <div className="flex gap-2">
