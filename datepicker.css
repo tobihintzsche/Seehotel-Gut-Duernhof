@@ -2,6 +2,24 @@
   /* Example styling for the toggle button */
   background-color: #ffffff !important;
   color: black !important ;
+  
+
+
+}
+
+.rs-picker-menu {
+  position: absolute !important;
+}
+
+.rs-picker-toolbar {
+  position: sticky;
+  bottom: 0;
+  z-index: 10000;
+  background: white;
+}
+
+.rs-picker-toggle-value {
+  color:black !important;
 }
 
 .rs-calendar-table-cell-in-range {
@@ -66,20 +84,64 @@
 .rs-picker-daterange-calendar-group {
   height: 100% !important;
   min-width: auto !important;
+  overflow-y: auto !important;
 }
 
 /* Media query for tablet and mobile */
 @media only screen and (max-width: 767px) {
   .rs-picker-daterange-calendar-group {
+    display: flex !important;
     flex-direction: column;
+  }
+
+  .rs-picker-daterange-header {
+    text-align: center !important;
+  }
+
+  .rs-picker-toolbar .rs-stack-item:first-child {
+    display: none !important;
+  }
+
+  .rs-picker-daterange-menu .rs-calendar:first-child {
+    border-right: 0px !important;
   }
 
   .rs-picker-daterange-menu {
     height: 100vh !important;
+    left: 0px !important;
+      position: fixed !important;
+      display: flex !important;
+      overflow-y: auto !important;
+    
+  }
+
+  .rs-picker-toolbar-right {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .rs-picker-toolbar-right .rs-btn-primary {
+    width: 60% !important;
   }
 
   .rs-picker-menu {
     top: 0px !important;
+    width: 100% !important;
+    display: flex !important;
+  }
+
+  .rs-picker-daterange-panel {
+    width: 100% !important;
+  }
+
+  .rs-picker-daterange-content {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .rs-stack-item {
+    width: 100% !important;
   }
 
 
