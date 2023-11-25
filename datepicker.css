@@ -73,6 +73,16 @@
   .rs-picker-daterange-calendar-group {
     flex-direction: column;
   }
+
+  .rs-picker-daterange-menu {
+    height: 100vh !important;
+  }
+
+  .rs-picker-menu {
+    top: 0px !important;
+  }
+
+
 }
 
 /* Media query for desktop */
@@ -90,20 +100,28 @@
   border-spacing: 0px 4px;
 }
 
+.rs-calendar-table-cell:hover.rs-calendar-table-cell-selected-end  > .rs-calendar-table-cell-content {
+  background-color: rgb(228, 160, 0) !important;
+  box-shadow: 0 0 0 1px black !important;
+
+  
+}
+
+.rs-calendar-table-cell:hover.rs-calendar-table-cell-selected-start  > .rs-calendar-table-cell-content {
+  background-color: rgb(228, 160, 0) !important;
+  box-shadow: 0 0 0 1px black !important;
+
+  
+}
+
 .rs-calendar-table-cell-selected-start::before {
   background-color: white;
-  background: linear-gradient(to left, rgb(230, 224, 204) 50%, transparent 50%);
   margin-top: 0px !important;
 }
 
 
 .rs-calendar-table-cell-selected-end::before {
   background-color: white;
-  background: linear-gradient(
-    to right,
-    rgb(230, 224, 204) 50%,
-    transparent 50%
-  );
   margin-top: 0px !important;
 }
 
@@ -114,7 +132,7 @@
 
 
 
-.rs-picker-menu .rs-calendar .rs-calendar-table-cell:hover .rs-calendar-table-cell-content {
+.rs-picker-menu .rs-calendar .rs-calendar-table-cell:hover .rs-calendar-table-cell-content .rs-calendar-table-cell:hover.rs-calendar-table-cell-selected-end:not() {
   color: black !important;
   background-color: rgb(255, 255, 255) !important;
   box-shadow: 0 0 0 1px black !important;
@@ -140,6 +158,8 @@
 
 
 
+
+
 /* .rs-calendar-table-cell:hover, .rs-calendar-table-header-cell:hover {
   color: black;
   background-color: transparent !important;
@@ -151,6 +171,7 @@
 .rs-calendar-table-cell-in-range:before {
   background-color: rgb(230, 224, 204) !important;
 }
+ 
 
 
 .rs-calendar-table-cell-selected-end:not(:hover) ~ .rs-calendar-table-cell-selected-start::before {
@@ -159,12 +180,16 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  background: linear-gradient(to right, rgb(230, 224, 204) 50%, transparent 50%);
+  background-color: rgb(228, 160, 0) !important;
   margin-top: 0px !important;
   margin-left: auto;
   left: 0;
   right: 0;
 }
 
+
+.rs-calendar-table-cell-selected-start.rs-calendar-table-cell-in-range:hover > .rs-calendar-table-cell-content:hover {
+  background-color: rgb(228, 160, 0) !important;
+}
 
 
