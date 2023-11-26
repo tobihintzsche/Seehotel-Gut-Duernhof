@@ -11,7 +11,7 @@ export const Arrangements = () => {
   const lastHighlightClassName = "mr-4";
 
   return (
-    <div className="flex gap-4 pb-40">
+    <div className="flex gap-4 py-40">
       <div className="flex gap-2 overflow-scroll md:overflow-hidden whitespace-nowrap -mx-4 pb-2">
         {ArrangementsArray.map((arrangement, index) => {
           let highlightClassName;

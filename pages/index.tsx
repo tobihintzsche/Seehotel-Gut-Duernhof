@@ -18,10 +18,11 @@ import {
   GetHomePageByIdQuery,
   GetHomePageByIdQueryVariables,
 } from "@/src/getHomePageById.generated";
-import { DatePickerTest } from "@/components/HomePage/DatePickerTest";
+import { DatePicker } from "@/components/HomePage/DatePickerTest";
 import styled from "styled-components";
 import request from "graphql-request";
 import type { InferGetStaticPropsType, GetStaticProps } from "next";
+import { Searchbar } from "@/components/Searchbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -63,10 +64,8 @@ export default function Home({
       <div className="max-w-screen-2xl mx-auto">
         <div className="w-full px-4 lg:px-10 md:px-8 sm:px-6">
           <TranslatedElement>
-            <div className="z-20 h-20 w-80 mx-auto bg-green-700 p-small elevation-2">
-              <div>
-                <DatePickerTest />
-              </div>
+            <div className="flex justify-center">
+              <Searchbar />
             </div>
           </TranslatedElement>
           <div className="h-40 flex flex-row gap-4 bg-gray-300">
