@@ -50,7 +50,7 @@ export default function Home({
 
   return (
     <div className="mx-auto">
-      <div className="md:h-[540px] xl:h-[800px]">
+      <div className="md:h-[540px] xl:h-[600px]">
         <Image
           src={image}
           alt="test"
@@ -68,7 +68,7 @@ export default function Home({
               <Searchbar />
             </div>
           </TranslatedElement>
-          <div className="h-40 flex flex-row gap-4 bg-gray-300">
+          <div className="h-40 flex flex-row mt-20 gap-4 bg-gray-300">
             <div className="ml-6">
               <TranslatedElement>
                 <h1 className="text-4xl tobi">Seehotel</h1>

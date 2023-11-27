@@ -34,6 +34,7 @@ interface DatePickerProps {
 export const DatePicker = ({ value, setValue }: DatePickerProps) => {
   return (
     <StyledDateRangePicker
+      editable={false}
       isoWeek
       limitStartYear={1}
       limitEndYear={3}

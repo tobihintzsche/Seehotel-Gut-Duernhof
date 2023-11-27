@@ -7,6 +7,23 @@
 
 }
 
+.rs-picker {
+  width: 100%;
+  cursor: pointer !important;
+}
+
+
+.rs-picker-default .rs-picker-toggle {
+  border: 0px !important; 
+  /* color: #575757;
+  color: var(--rs-text-primary);
+  display: inline-block;
+  padding-right: 32px;
+  position: relative;
+  z-index: 5; */
+
+}
+
 .rs-picker-menu {
   position: absolute !important;
 }
@@ -16,6 +33,10 @@
   bottom: 0;
   z-index: 10000;
   background: white;
+}
+
+.rs-picker-toggle-active, .rs-picker.rs-picker-focused {
+  box-shadow: none !important;
 }
 
 .rs-picker-toggle-value {

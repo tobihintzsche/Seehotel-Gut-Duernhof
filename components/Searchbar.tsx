@@ -36,35 +36,45 @@ export const Searchbar = () => {
     ...selectedTravelers.childrenAges.map((age) => age.toString()),
   ].join(",");
 
+  console.log(value);
+
   return (
-    <div className="flex flex-col md:flex-row gap-2 p-2 w-min bg-white rounded-md">
+    <div className="flex border border-black flex-col md:flex-row gap-2 bg-white w-[800px] rounded-md">
       <Script
         src="https://js-sdk.dirs21.de/55b2c45c-052d-4055-90b7-04057545cefa"
         type="text/javascript"
         async
       />
 
-      <div className="border-r-2">
+      <div className="flex-2 flex items-center cursor-pointer">
         <DatePicker setValue={setValue} value={value} />
       </div>
-      <div className="bg-white whitespace-nowrap flex  border-r-2 items-center">
+      <div className="bg-white border-l border-gray-200 relative flex-2 whitespace-nowrap flex items-center">
         <TravelerSelector
           selectedTravelers={selectedTravelers}
           setSelectedTravelers={setSelectedTravelers}
         />
       </div>
-      <div className=" flex items-center">
-        {value?.[0] && (
-          <button className="whitespace-nowrap">
+      <div className=" flex flex-1 items-center">
+        {value?.[0] ? (
+          <button className="whitespace-nowrap bg-orange-300 hover:bg-orange-600 font-bold py-2 px-4 rounded-r">
             <a
               href={`https://v4.ibe.dirs21.de/channels/gut-duernhof/?los=2&room=${mappedTravelers}&arrival=${format(
                 value[0],
                 "yyyy-MM-dd"
               )}&culture=de-DE&in_tab=true#start`}
               target="_blank"
+              className="text-white no-underline"
             >
               Hier Zimmer buchen!
             </a>
+          </button>
+        ) : (
+          <button
+            className="whitespace-nowrap bg-gray-300 text-gray-500 font-bold py-2 px-4 rounded-r cursor-not-allowed opacity-50"
+            disabled
+          >
+            Hier Zimmer buchen!
           </button>
         )}
       </div>

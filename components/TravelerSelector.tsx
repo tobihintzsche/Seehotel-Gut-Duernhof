@@ -75,14 +75,11 @@ const TravelerSelector = ({
   };
 
   return (
-    <div className="relative">
-      <div
-        className="border border-gray-300 p-2 cursor-pointer"
-        onClick={handleFieldClick}
-      >
+    <div className="">
+      <div className=" p-2 cursor-pointer" onClick={handleFieldClick}>
         {modalOpen
           ? "Reisende auswählen"
-          : `Selected Travelers: ${selectedTravelers.adults} Adults, ${selectedTravelers.children} Children`}
+          : `${selectedTravelers.adults} Erwachsene, ${selectedTravelers.children} Kinder`}
       </div>
       {modalOpen && (
         <div className="fixed z-10 flex items-center justify-center">
@@ -171,15 +168,9 @@ const TravelerSelector = ({
             <div className="flex justify-between">
               <button
                 onClick={handleSubmit}
-                className="bg-blue-500 text-white px-4 py-2 rounded"
+                className="bg-orange-300 w-full hover:bg-orange-400 text-white px-4 py-2 rounded"
               >
-                Submit
-              </button>
-              <button
-                onClick={handleCloseModal}
-                className="bg-gray-300 text-gray-700 px-4 py-2 rounded"
-              >
-                Cancel
+                Übernehmen
               </button>
             </div>
           </div>
